@@ -1,13 +1,31 @@
-# 定义编译器和编译选项
 CXX = g++
-CXXFLAGS = -Wall -g
+CXXFLAGS = -std=c++11 -Wall -fPIC
+QT_INCLUDE = -I/usr/include/x86_64-linux-gnu/qt5/ \
+             -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets \
+             -I/usr/include/x86_64-linux-gnu/qt5/QtGui \
+             -I/usr/include/x86_64-linux-gnu/qt5/QtCore
+QT_LIBS = -lQt5Widgets -lQt5Gui -lQt5Core
 
-# 定义目标可执行文件
-TARGET = 123
+SRC = main.cpp gamewindow.cpp gomokuboard.cpp
+OBJ = $(SRC:.cpp=.o) moc_gamewindow.o  # 添加 moc 生成的目标文件
+TARGET = gomoku
 
-# 定义源代码文件
-SRC = 1.cpp
+all: $(TARGET)
 
-# 默认规则：如何从源代码生成可执行文件
-$(TARGET): $(SRC)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRC)
+$(TARGET): $(OBJ)
+	$(CXX) $(CXXFLAGS) $^ -o $@ $(QT_LIBS)
+
+# 生成 moc 文件
+moc_%.cpp: %.h
+	moc $< -o $@
+
+# 编译 moc 文件
+moc_%.o: moc_%.cpp
+	$(CXX) $(CXXFLAGS) $(QT_INCLUDE) -c $< -o $@
+
+# 编译普通源文件
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) $(QT_INCLUDE) -c $< -o $@
+
+clean:
+	rm -f $(OBJ) $(TARGET) moc_*
