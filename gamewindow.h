@@ -3,22 +3,33 @@
 
 #include <QMainWindow>
 #include <QMouseEvent>
+#include <QMessageBox>
 #include "gomokuboard.h"
+#include <QTimer>
+#include <QtMath>
+#include <QRandomGenerator>
 
 class GameWindow : public QMainWindow {
     Q_OBJECT  // Qt 元对象系统支持
 
 public:
-    explicit GameWindow(QWidget *parent = nullptr);
-    ~GameWindow() override = default;
+    enum GameMode { HumanVsHuman, HumanVsAI };
+    explicit GameWindow(QWidget *parent = nullptr);//防止了自动的类型转换
+    ~GameWindow() override = default;//默认实现
+    void ShowWinner(GomokuBoard::Piece winner);
 
 protected:
-    void paintEvent(QPaintEvent *event) override;  // 重绘事件
+    void paintEvent(QPaintEvent *event) override;  // 绘画事件
     void mousePressEvent(QMouseEvent *event) override;  // 鼠标事件
 
 private:
     GomokuBoard m_board;      // 棋盘逻辑（组合）
     GomokuBoard::Piece m_currentPiece;  // 当前玩家棋子
+                                        //
+    GameMode m_gameMode;  // 新增游戏模式成员
+    
+    QPoint calculateAIMove();  // AI计算落子位置
+    int evaluatePosition(int x, int y, GomokuBoard::Piece aiPiece);  // 位置评估函数
 
     void drawBoard(QPainter &painter);  // 绘制棋盘
     void drawPieces(QPainter &painter); // 绘制棋子
