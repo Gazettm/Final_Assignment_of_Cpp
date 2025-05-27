@@ -6,7 +6,7 @@
 #include <QMessageBox>
 #include "gomokuboard.h"
 #include <QTimer>
-#include <QtMath>
+#include <QApplication>
 #include <QRandomGenerator>
 
 class GameWindow : public QMainWindow {
@@ -17,6 +17,7 @@ public:
     explicit GameWindow(QWidget *parent = nullptr);//防止了自动的类型转换
     ~GameWindow() override = default;//默认实现
     void ShowWinner(GomokuBoard::Piece winner);
+    void exitGame();
 
 protected:
     void paintEvent(QPaintEvent *event) override;  // 绘画事件

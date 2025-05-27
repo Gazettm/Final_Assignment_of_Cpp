@@ -4,7 +4,7 @@
 #include <QMessageBox>
 #include <QElapsedTimer>
 #include <QRandomGenerator>
-#include <QtMath>
+#include <QApplication>
 
 GameWindow::GameWindow(QWidget *parent) : QMainWindow(parent), m_board(15), m_currentPiece(GomokuBoard::Black) {
     setWindowTitle("Gomoku Game");
@@ -21,16 +21,30 @@ GameWindow::GameWindow(QWidget *parent) : QMainWindow(parent), m_board(15), m_cu
 }
 void GameWindow::ShowWinner(GomokuBoard::Piece winner) {
     if (winner == GomokuBoard::Black) {
-        QMessageBox::information(this, "游戏结束", "黑棋获胜！");
-        m_board.reset();
-        update();
+        // 黑棋获胜时弹出消息框
+        QMessageBox msgBox;
+        msgBox.setText("黑棋获胜！");
+        msgBox.setInformativeText("点击确定退出游戏");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDefaultButton(QMessageBox::Ok);
+
+        // 设置消息框按钮点击后的槽函数
+        connect(&msgBox, &QMessageBox::finished, this, &GameWindow::exitGame);
+
+        msgBox.exec();  // 弹出消息框，等待用户点击
     } else if (winner == GomokuBoard::White) {
-        QMessageBox::information(this, "游戏结束", "白棋获胜！");
-        m_board.reset();
-        update();
+        // 白棋获胜时弹出消息框
+        QMessageBox msgBox;
+        msgBox.setText("白棋获胜！");
+        msgBox.setInformativeText("点击确定退出游戏");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDefaultButton(QMessageBox::Ok);
+
+        connect(&msgBox, &QMessageBox::finished, this, &GameWindow::exitGame);
+
+        msgBox.exec();  // 弹出消息框，等待用户点击
     }
-}
-void GameWindow::paintEvent(QPaintEvent *event) {
+}void GameWindow::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     drawBoard(painter);
     drawPieces(painter);
@@ -164,7 +178,8 @@ int GameWindow::evaluatePosition(int x, int y, GomokuBoard::Piece aiPiece) {
         else if (humanCount == 2 && !humanBlocked) score += 1000;  // 堵活二
 
         // AI进攻评分
-        if (aiCount >= 4) score += 100001;       // 形成四连
+        if(aiCount == 5) score += 999999;
+        else if (aiCount >= 4) score += 5000;       // 形成四连
         else if (aiCount == 3 && !aiBlocked) score += 5000;  // 活三
         else if (aiCount == 2 && !aiBlocked) score += 500;   // 活二
     }
@@ -196,4 +211,7 @@ void GameWindow::drawPieces(QPainter &painter) {
             }
         }
     }
+}
+void GameWindow::exitGame() {
+    QApplication::quit();  // 退出整个应用
 }
