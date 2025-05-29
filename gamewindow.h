@@ -4,33 +4,34 @@
 #include <QMainWindow>
 #include <QMouseEvent>
 #include <QMessageBox>
-#include <QTimer>
 #include "gomokuboard.h"
-#include "aiplayer.h"  // 包含新的AIPlayer类
+#include "aiplayer.h"
+#include <QTimer>
+#include <QApplication>
+#include <QRandomGenerator>
 
 class GameWindow : public QMainWindow {
-	Q_OBJECT
-	
+    Q_OBJECT  // Qt 元对象系统支持
+
 public:
-	enum GameMode { HumanVsHuman, HumanVsAI };
-	
-	explicit GameWindow(QWidget *parent = nullptr);
-	~GameWindow() override = default;
-	
-	void ShowWinner(GomokuBoard::Piece winner);
-	void exitGame();
-	
+    enum GameMode { HumanVsHuman, HumanVsAI };
+    explicit GameWindow(QWidget *parent = nullptr);//防止了自动的类型转换
+    ~GameWindow() override = default;//默认实现
+    void ShowWinner(GomokuBoard::Piece winner);
+    void exitGame();
+
 protected:
-	void paintEvent(QPaintEvent *event) override;
-	void mousePressEvent(QMouseEvent *event) override;
-	
+    void paintEvent(QPaintEvent *event) override;  // 绘画事件
+    void mousePressEvent(QMouseEvent *event) override;  // 鼠标事件
+
 private:
-	GomokuBoard m_board;
-	GomokuBoard::Piece m_currentPiece;
-	GameMode m_gameMode;
-	AIPlayer m_aiPlayer;  // 添加AIPlayer成员变量
-	
-	void handleAIMove();  // 新增处理AI移动的函数
+    GomokuBoard m_board;      // 棋盘逻辑（组合）
+    GomokuBoard::Piece m_currentPiece;  // 当前玩家棋子
+    GameMode m_gameMode;  // 游戏模式成员
+    AiPlayer m_aiplayer;  // ai工具成员
+
+    void drawBoard(QPainter &painter);  // 绘制棋盘
+    void drawPieces(QPainter &painter); // 绘制棋子
 };
 
 #endif

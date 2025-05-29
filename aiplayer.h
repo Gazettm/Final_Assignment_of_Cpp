@@ -1,18 +1,11 @@
 #ifndef AIPLAYER_H
 #define AIPLAYER_H
-
-#include <QPoint>
 #include "gomokuboard.h"
-
-class AIPlayer {
+#include <QPoint>
+class AiPlayer{
 public:
-	explicit AIPlayer(const GomokuBoard& board);
-	QPoint calculateMove(GomokuBoard::Piece aiPiece);
-	
-private:
-	int evaluatePosition(int x, int y, GomokuBoard::Piece aiPiece) const;
-	
-	const GomokuBoard& m_board;
+	AiPlayer(){}
+	int evaluatePosition(int x, int y, GomokuBoard::Piece aiPiece,GomokuBoard m_board);  // 位置评估函数
+	QPoint calculateAIMove(GomokuBoard m_board);  // AI计算落子位置
 };
-
-#endif // AIPLAYER_H
+#endif
