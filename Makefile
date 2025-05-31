@@ -6,7 +6,7 @@ QT_INCLUDE = -I/usr/include/x86_64-linux-gnu/qt5/ \
              -I/usr/include/x86_64-linux-gnu/qt5/QtCore
 QT_LIBS = -lQt5Widgets -lQt5Gui -lQt5Core
 
-SRC = main.cpp gamewindow.cpp gomokuboard.cpp aiplayer.cpp
+SRC = main.cpp gamewindow.cpp gomokuboard.cpp aiplayer.cpp Rating.cpp
 OBJ = $(SRC:.cpp=.o) moc_gamewindow.o  # 添加 moc 生成的目标文件
 TARGET = gomoku
 

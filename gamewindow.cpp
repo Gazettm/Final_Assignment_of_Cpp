@@ -4,11 +4,13 @@
 #include <QMessageBox>
 #include <QElapsedTimer>
 #include <QApplication>
+#include <fstream>
 
 GameWindow::GameWindow(QWidget *parent) : QMainWindow(parent), m_board(15), m_currentPiece(GomokuBoard::Black) {
     setWindowTitle("Gomoku Game");
     setFixedSize(600, 600);
-
+	show();
+	rating.ShowRating();
     // 添加模式选择对话框
     QMessageBox::StandardButton reply = QMessageBox::question(
         this,
@@ -20,6 +22,9 @@ GameWindow::GameWindow(QWidget *parent) : QMainWindow(parent), m_board(15), m_cu
 }
 void GameWindow::ShowWinner(GomokuBoard::Piece winner) {
     if (winner == GomokuBoard::Black) {
+		if(m_gameMode == HumanVsAI){
+			WriteRatingY();
+		}
         // 黑棋获胜时弹出消息框
         QMessageBox msgBox;
         msgBox.setText("黑棋获胜！");
@@ -32,6 +37,9 @@ void GameWindow::ShowWinner(GomokuBoard::Piece winner) {
 
         msgBox.exec();  // 弹出消息框，等待用户点击
     } else if (winner == GomokuBoard::White) {
+		if(m_gameMode == HumanVsAI){
+			WriteRatingN();
+		}
         // 白棋获胜时弹出消息框
         QMessageBox msgBox;
         msgBox.setText("白棋获胜！");
@@ -108,4 +116,18 @@ void GameWindow::drawPieces(QPainter &painter) {
 }
 void GameWindow::exitGame() {
     QApplication::quit();  // 退出整个应用
+}
+void GameWindow::WriteRatingY(){
+	std::string filename = "Rating.txt";
+	std::string content = "Y";
+	std::ofstream file(filename, std::ios::app);
+	file << content << std::endl;
+	file.close();
+}
+void GameWindow::WriteRatingN(){
+	std::string filename = "Rating.txt";
+	std::string content = "N";
+	std::ofstream file(filename, std::ios::app);
+	file << content << std::endl;
+	file.close();
 }

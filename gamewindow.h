@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include "gomokuboard.h"
 #include "aiplayer.h"
+#include "Rating.h"
 #include <QTimer>
 #include <QApplication>
 #include <QRandomGenerator>
@@ -19,6 +20,8 @@ public:
     ~GameWindow() override = default;//默认实现
     void ShowWinner(GomokuBoard::Piece winner);
     void exitGame();
+	void WriteRatingY();
+	void WriteRatingN();
 
 protected:
     void paintEvent(QPaintEvent *event) override;  // 绘画事件
@@ -29,7 +32,7 @@ private:
     GomokuBoard::Piece m_currentPiece;  // 当前玩家棋子
     GameMode m_gameMode;  // 游戏模式成员
     AiPlayer m_aiplayer;  // ai工具成员
-
+	Rating rating;
     void drawBoard(QPainter &painter);  // 绘制棋盘
     void drawPieces(QPainter &painter); // 绘制棋子
 };
