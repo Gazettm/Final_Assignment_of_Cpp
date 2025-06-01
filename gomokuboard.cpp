@@ -21,34 +21,37 @@ bool GomokuBoard::placePiece(int x, int y, Piece piece) {
 }//落子,若超出范围或在已有棋子处,则返回false，重新落子.
 
 bool GomokuBoard::checkWin(int x, int y) const {
-	Piece currentPiece = m_board[x][y];
-	if (currentPiece == Empty) {
-		return false; // 空格不可能是胜利状态
-	}
-	const int directions[4][2] = {{1,0}, {0,1}, {1,1}, {1,-1}};
-	
-	for (auto &dir : directions) {
-		int Count = 1;
-		int dx = dir[0], dy = dir[1];
-		
-		// 正向检测
-		for (int i = 1; i < 5; ++i) {
-			int nx = x + dx * i, ny = y + dy * i;
-			if (nx < 0 || nx >= size() || ny < 0 || ny >= size()) break;
-			if (pieceAt(nx, ny) == currentPiece) {
-				Count++;
-			}
-		}
-		// 反向检测
-		for (int i = 1; i < 5; ++i) {
-			int nx = x - dx * i, ny = y - dy * i;
-			if (nx < 0 || nx >= size() || ny < 0 || ny >= size()) break;
-			if (pieceAt(nx, ny) == currentPiece) {
-				Count++;
-			}
-		}
-		if(Count >= 5) return true;
-	}
-	// 如果没有找到五子连珠
-	return false;
+    Piece currentPiece = m_board[x][y];
+    if (currentPiece == Empty) {
+        return false;
+    }
+    const int directions[4][2] = {{1,0}, {0,1}, {1,1}, {1,-1}};
+    
+    for (auto &dir : directions) {
+        int Count = 1;
+        int dx = dir[0], dy = dir[1];
+        
+        // 正向检测
+        for (int i = 1; i < 5; ++i) {
+            int nx = x + dx * i, ny = y + dy * i;
+            if (nx < 0 || nx >= size() || ny < 0 || ny >= size()) break;
+            if (pieceAt(nx, ny) == currentPiece) {
+                Count++;
+            } else {
+                break;  // Bug fixes
+            }
+        }
+        // 反向检测
+        for (int i = 1; i < 5; ++i) {
+            int nx = x - dx * i, ny = y - dy * i;
+            if (nx < 0 || nx >= size() || ny < 0 || ny >= size()) break;
+            if (pieceAt(nx, ny) == currentPiece) {
+                Count++;
+            } else {
+                break;  // Bug fixes
+            }
+        }
+        if(Count >= 5) return true;
+    }
+    return false;
 }

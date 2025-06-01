@@ -21,6 +21,7 @@ GameWindow::GameWindow(QWidget *parent) : QMainWindow(parent), m_board(15), m_cu
     m_gameMode = (reply == QMessageBox::Yes) ? HumanVsAI : HumanVsHuman;
 }
 void GameWindow::ShowWinner(GomokuBoard::Piece winner) {
+    update();
     if (winner == GomokuBoard::Black) {
 		if(m_gameMode == HumanVsAI){
 			WriteRatingY();
