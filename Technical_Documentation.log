@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2025/dev/Debian) (preloaded format=xelatex 2025.5.24)  1 JUN 2025 11:31
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2025/dev/Debian) (preloaded format=xelatex 2025.5.24)  4 JUN 2025 11:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -716,20 +716,19 @@ LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/sl' in size <10.5393
 [4] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+)
+
+[5] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+)
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
 File: lstlang2.sty 2024/09/23 1.10c listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-)
-(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-)
-
-[5]
 
 [6] (./Technical_Documentation.aux)
  ***********
@@ -743,10 +742,10 @@ Package rerunfilecheck Info: File `Technical_Documentation.out' has not changed
 Here is how much of TeX's memory you used:
  18029 strings out of 473835
  378554 string characters out of 5731946
- 1254540 words of memory out of 5000000
+ 1254749 words of memory out of 5000000
  40826 multiletter control sequences out of 15000+600000
  568619 words of font info for 106 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 93i,9n,112p,383b,1971s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 93i,9n,112p,383b,1970s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on Technical_Documentation.pdf (6 pages).

@@ -231,10 +231,6 @@ N  // AI获胜记录
 
 \subsection{编译步骤}
 \begin{enumerate}
-	\item 写makefile文件：
-\begin{lstlisting}[language=make]
-make
-\end{lstlisting}
     \item 编译项目(提前写的makefile文件)：
 \begin{lstlisting}[language=bash]
 CXX = g++
@@ -269,11 +265,15 @@ moc_%.o: moc_%.cpp
 clean:
 	rm -f $(OBJ) $(TARGET) moc_*
 \end{lstlisting}
+\item 写makefile文件：
+\begin{lstlisting}[language=make]
+make
+\end{lstlisting}
     \item 运行程序：
 \begin{lstlisting}[language=bash]
 ./gomoku
 \end{lstlisting}
-\end{enumerate}
+\end{enumerate}s
 
 \subsection{文件说明}
 \begin{tabular}{|l|l|}
