@@ -5,7 +5,11 @@
 \usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{fontspec}
 \usepackage{geometry}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage[most]{tcolorbox}
 \geometry{a4paper, left=2cm, right=2cm, top=2.5cm, bottom=2.5cm}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -160,6 +164,54 @@ void GameWindow::mousePressEvent(QMouseEvent *event) {
 \subsection{Rating类}
 胜率统计系统，基于文件存储历史记录。
 
+\subsubsection{核心方法}
+\begin{lstlisting}[language=C++]
+Rating::Rating(): rating(0), Y(0), N(0){
+	std::string filename = "Rating.txt";
+	std::ifstream file(filename);
+	if (!file) {
+		std::ofstream createFile(filename);
+		if (createFile) {
+			createFile.close();
+			file.open(filename);
+		}
+	}
+	std::string line;
+	while (std::getline(file, line)) {
+		if(line[0] == 'Y')Y++;
+		if(line[0] == 'N')N++;
+	}
+	file.close();
+	if (N == 0 && Y == 0) {
+		rating = 0;
+		message = QString("无信息");
+		return;
+	} else if (Y == 0) {
+		rating = 0;
+	} else if (N == 0) {
+		rating = 100;
+	} else {
+		rating = Y / (Y + N) * 100;
+	}
+	message = QString("您的人机对战胜率为 %1 %").arg(rating, 0, 'f', 2);
+}
+
+void Rating::ShowRating(){
+	QMessageBox msgBox;
+	msgBox.setWindowTitle("胜率");
+	msgBox.setText(QString("%1\nYes确认,No清空胜率").arg(message));
+	msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+	msgBox.setDefaultButton(QMessageBox::Yes);
+	int ret = msgBox.exec();
+	if (ret == QMessageBox::No) {
+		std::ofstream file("Rating.txt", std::ios::trunc);
+		if (!file) {
+			return;
+		}
+		file.close();
+	}
+}
+\end{lstlisting}
 \subsubsection{数据结构}
 \begin{itemize}
     \item \texttt{rating}: 胜率百分比
@@ -220,7 +272,42 @@ N  // AI获胜记录
     \item 五连珠时显示获胜对话框
     \item 游戏结束记录胜率
 \end{enumerate}
-
+\section{测试}
+\subsection{图片展示}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{screenshoot1.png}
+        \caption{图1}
+        \label{fig:image1}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{screenshoot2.png}
+        \caption{图2}
+        \label{fig:image2}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{screenshoot3.png}
+        \caption{图3}
+        \label{fig:image3}
+    \end{subfigure}
+    \caption{测试图例}
+    \label{fig:allimages}
+\end{figure}
+\subsection{版本说明}
+\begin{itemize}
+    \item May 14, 2025 测试
+    \item May 24, 2025 linux下texmaker测试(使用xelatex)
+    \item May 27, 2025 添加AI
+    \item May 28, 2025 优化判定算法
+    \item May 31, 2025 添加胜率
+    \item Jun 1, 2025 修复bug
+\end{itemize}
 \section{编译运行说明}
 \subsection{环境要求}
 \begin{itemize}
@@ -288,5 +375,22 @@ main.cpp & 程序入口点 \\
 Rating.txt & 胜率数据存储 \\
 \hline
 \end{tabular}
+\section{分工}
+Gazettm:
+\begin{itemize}
+	\item gomokuboard
+    \item gamewindows
+    \item aiplayer
+    \item Makefile
+    \item LaTex
+\end{itemize}
+\medskip
+pajiiii:
+\begin{itemize}
+	\item aiplayer
+	\item PPT
+	\item markdown
+	\item Rating
+\end{itemize}
 
 \end{document}
