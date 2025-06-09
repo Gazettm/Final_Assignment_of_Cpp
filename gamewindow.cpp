@@ -140,14 +140,14 @@ void GameWindow::leaveEvent(QEvent *event) {
 }
 void GameWindow::drawBoard(QPainter &painter) {
     int gridSize = width() / m_board.size();
-    int margin = (width() - (m_board.size() * gridSize)) / 2;  // 计算边距
+    int margin = (width() - (m_board.size() * gridSize)) / 2;
     
     painter.fillRect(margin, margin, 
                     m_board.size() * gridSize, 
                     m_board.size() * gridSize, 
-                    QBrush(QColor(210, 180, 140, 180))); // 棋盘底色
+                    QBrush(QColor(210, 180, 140, 180))); 
 
-    painter.setPen(QPen(QColor(13, 102, 171, 150), 4));  // 深棕色边框
+    painter.setPen(QPen(QColor(13, 102, 171, 150), 4));
     painter.drawRect(margin, margin, 
                     m_board.size() * gridSize, 
                     m_board.size() * gridSize);
