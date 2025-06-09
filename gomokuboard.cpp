@@ -10,7 +10,7 @@ void GomokuBoard::reset() {
 		row.resize(m_size);
 		row.fill(Empty);
 	}
-}//重置棋盘
+}
 
 bool GomokuBoard::placePiece(int x, int y, Piece piece) {
 	if (x < 0 || x >= m_size || y < 0 || y >= m_size || m_board[x][y] != Empty) {
@@ -18,7 +18,7 @@ bool GomokuBoard::placePiece(int x, int y, Piece piece) {
 	}
 	m_board[x][y] = piece;
 	return true;
-}//落子,若超出范围或在已有棋子处,则返回false，重新落子.
+}
 
 bool GomokuBoard::checkWin(int x, int y) const {
     Piece currentPiece = m_board[x][y];
@@ -31,24 +31,22 @@ bool GomokuBoard::checkWin(int x, int y) const {
         int Count = 1;
         int dx = dir[0], dy = dir[1];
         
-        // 正向检测
         for (int i = 1; i < 5; ++i) {
             int nx = x + dx * i, ny = y + dy * i;
             if (nx < 0 || nx >= size() || ny < 0 || ny >= size()) break;
             if (pieceAt(nx, ny) == currentPiece) {
                 Count++;
             } else {
-                break;  // Bug fixes
+                break;
             }
         }
-        // 反向检测
         for (int i = 1; i < 5; ++i) {
             int nx = x - dx * i, ny = y - dy * i;
             if (nx < 0 || nx >= size() || ny < 0 || ny >= size()) break;
             if (pieceAt(nx, ny) == currentPiece) {
                 Count++;
             } else {
-                break;  // Bug fixes
+                break;
             }
         }
         if(Count >= 5) return true;
