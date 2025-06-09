@@ -14,12 +14,11 @@ GameWindow::GameWindow(QWidget *parent) :
     m_currentPiece(GomokuBoard::Black), 
     m_hoverPos(-1, -1) {
     setWindowTitle("Gomoku Game");
-    setFixedSize(640, 640);  // 固定窗口大小
-    setMouseTracking(true);   // 启用鼠标跟踪
+    setFixedSize(640, 640);
+    setMouseTracking(true);
     show();
     rating.ShowRating();
-     
-    // 添加模式选择对话框
+    
     QMessageBox::StandardButton reply = QMessageBox::question(
         this,
         "游戏模式",
