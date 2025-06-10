@@ -11,9 +11,10 @@
 #include <QApplication>
 #include <QRandomGenerator>
 #include <QPixmap>
+#include <cmath>
 
 class GameWindow : public QMainWindow {
-    Q_OBJECT
+    Q_OBJECT 
 
 public:
     enum GameMode { HumanVsHuman, HumanVsAI };

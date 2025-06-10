@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2025/dev/Debian) (preloaded format=xelatex 2025.5.24)  9 JUN 2025 12:26
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2025/dev/Debian) (preloaded format=xelatex 2025.5.24)  10 JUN 2025 02:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -743,6 +743,12 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 ]
+
+LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/sl' in size <10.5393
+7> not available
+(Font)              Font shape `TU/FandolSong-Regular(0)/m/it' tried instead on
+ input line 61.
+[2]
 File: structure.png Graphic file (type bmp)
 <structure.png>
 
@@ -751,13 +757,9 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-LaTeX Font Info:    Font shape `TU/FandolSong-Regular(0)/m/sl' in size <10.5393
-7> not available
-(Font)              Font shape `TU/FandolSong-Regular(0)/m/it' tried instead on
- input line 111.
-[2]
+[3]
 
-[3] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+[4] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
@@ -788,13 +790,13 @@ t;"
 
 
 
-[4]
-
 [5]
 
 [6]
 
 [7]
+
+[8]
 File: screenshoot1.png Graphic file (type bmp)
 <screenshoot1.png>
 File: screenshoot2.png Graphic file (type bmp)
@@ -803,11 +805,11 @@ File: screenshoot3.png Graphic file (type bmp)
 <screenshoot3.png>
 
 
-[8]
-
 [9]
 
-[10] (./Technical_Documentation.aux)
+[10]
+
+[11] (./Technical_Documentation.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -816,23 +818,17 @@ L3 programming layer <2022/08/05>
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-
-Package rerunfilecheck Warning: File `Technical_Documentation.out' has changed.
-
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Technical_Documentation.out':
-(rerunfilecheck)             Before: FD03072ADA0ED01F4E6461E431B3D30F;2069
-(rerunfilecheck)             After:  38D2B1E8E2E4AD5E2F356DF3FB9C4B65;2185.
+Package rerunfilecheck Info: File `Technical_Documentation.out' has not changed
+.
+(rerunfilecheck)             Checksum: 38D2B1E8E2E4AD5E2F356DF3FB9C4B65;2185.
  ) 
 Here is how much of TeX's memory you used:
  19839 strings out of 473835
  413711 string characters out of 5731946
- 1352104 words of memory out of 5000000
+ 1352106 words of memory out of 5000000
  42616 multiletter control sequences out of 15000+600000
  568635 words of font info for 108 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  93i,9n,112p,530b,1817s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Technical_Documentation.pdf (10 pages).
+Output written on Technical_Documentation.pdf (11 pages).
