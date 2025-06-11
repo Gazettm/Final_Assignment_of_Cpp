@@ -58,15 +58,14 @@ bool GomokuBoard::checkWin(int x, int y) const {
 
 bool GomokuBoard::undoMove() {
     if (m_moves.empty()) {
-        return false; // 没有可悔棋的步骤
+        return false;
     }
     
-    // 使用 C++11 兼容的方式代替结构化绑定
     std::pair<int, int> lastMove = m_moves.back();
     int x = lastMove.first;
     int y = lastMove.second;
     
-    m_board[x][y] = Empty; // 将最后一步设为空
-    m_moves.pop_back(); // 移除最后一步记录
+    m_board[x][y] = Empty;
+    m_moves.pop_back();
     return true;
 }
