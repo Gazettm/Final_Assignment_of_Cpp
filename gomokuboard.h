@@ -16,10 +16,13 @@ public:
 
     int size() const { return m_size; }
     Piece pieceAt(int x, int y) const { return m_board[x][y]; }
+	bool undoMove();
+	const std::vector<std::pair<int, int>>& getMoves() const { return m_moves; }
 
 protected:
     QVector<QVector<Piece>> m_board;
     int m_size;
+	std::vector<std::pair<int, int>> m_moves;
 };
 
 #endif

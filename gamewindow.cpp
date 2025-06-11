@@ -7,6 +7,7 @@
 #include <fstream>
 #include <QLinearGradient>
 #include <QRadialGradient>
+#include <QKeyEvent> 
 
 GameWindow::GameWindow(QWidget *parent) : 
     QMainWindow(parent),
@@ -21,8 +22,8 @@ GameWindow::GameWindow(QWidget *parent) :
 
     QMessageBox::StandardButton reply = QMessageBox::question(
         this,
-        "游戏模式",
-        "请选择游戏模式：\n是 - 人机对战\n否 - 双人对战",
+        "游戏模式 ",
+        "Ctrl+z可以悔棋\n请选择游戏模式：\n是 - 人机对战\n否 - 双人对战",
         QMessageBox::Yes | QMessageBox::No
     );
     m_gameMode = (reply == QMessageBox::Yes) ? HumanVsAI : HumanVsHuman;
@@ -44,7 +45,7 @@ void GameWindow::ShowWinner(GomokuBoard::Piece winner) {
         connect(&msgBox, &QMessageBox::finished, this, &GameWindow::exitGame);
 
         msgBox.exec();
-    } else if (winner == GomokuBoard::White) {
+       } else if (winner == GomokuBoard::White) {
         if(m_gameMode == HumanVsAI){
             WriteRatingN();
         }
@@ -90,8 +91,11 @@ void GameWindow::mousePressEvent(QMouseEvent *event) {
         } else {
 
             if (m_gameMode == HumanVsAI) {
+				isAIpending = true;
                 m_currentPiece = GomokuBoard::White;
+				
                 QTimer::singleShot(500, this, [this]() { 
+					
                     QPoint aiMove = m_aiplayer.calculateAIMove(m_board);
                     if (aiMove.x() != -1) {
                         m_board.placePiece(aiMove.x(), aiMove.y(), GomokuBoard::White);
@@ -101,8 +105,9 @@ void GameWindow::mousePressEvent(QMouseEvent *event) {
                             m_currentPiece = GomokuBoard::Black;
                         }
                         update();
+                        isAIpending = false;
                     }
-                });
+                });	
             } else {
                 m_currentPiece = (m_currentPiece == GomokuBoard::Black) ? GomokuBoard::White : GomokuBoard::Black;
             }
@@ -110,6 +115,7 @@ void GameWindow::mousePressEvent(QMouseEvent *event) {
         }
     }
 }
+
 void GameWindow::mouseMoveEvent(QMouseEvent *event) {
     int gridSize = width() / (m_board.size() + 1);
     int margin = gridSize;
@@ -141,6 +147,17 @@ void GameWindow::leaveEvent(QEvent *event) {
         update(); 
     }
 }
+
+void GameWindow::keyPressEvent(QKeyEvent *event) {
+	if(isAIpending){
+		return;
+	}
+	if (event->key() == Qt::Key_Z && event->modifiers() & Qt::ControlModifier) {
+		undoLastMove();
+	}
+	QMainWindow::keyPressEvent(event);
+}
+
 void GameWindow::drawBoard(QPainter &painter) {
     int gridSize = width() / (m_board.size() + 1);
     int margin = gridSize;
@@ -251,4 +268,35 @@ void GameWindow::WriteRatingN(){
     file << content << std::endl;
     file.close();
 }
+void GameWindow::undoLastMove() {
+	if (m_gameMode == HumanVsHuman) {
+		if (m_board.undoMove()) {
+			m_currentPiece = (m_currentPiece == GomokuBoard::Black) 
+			? GomokuBoard::White : GomokuBoard::Black;
+			update();
+		}
+	} 
+	else if (m_gameMode == HumanVsAI) {
+		
+		bool undoSuccess = false;
+		if (m_board.getMoves().size() >= 2) {
+			if (m_board.undoMove()) {
+				if (m_board.undoMove()) {
+					undoSuccess = true;
+				}
+			}
+		}
+		else if (!m_board.getMoves().empty()) {
+			if (m_board.undoMove()) {
+				undoSuccess = true;
+			}
+		}
+		
+		if (undoSuccess) {
+			m_currentPiece = GomokuBoard::Black;
+			update();
+		}
+	}
+}
+
 

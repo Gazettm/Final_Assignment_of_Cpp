@@ -10,6 +10,7 @@ void GomokuBoard::reset() {
 		row.resize(m_size);
 		row.fill(Empty);
 	}
+	m_moves.clear();
 }
 
 bool GomokuBoard::placePiece(int x, int y, Piece piece) {
@@ -17,6 +18,7 @@ bool GomokuBoard::placePiece(int x, int y, Piece piece) {
 		return false;
 	}
 	m_board[x][y] = piece;
+	m_moves.emplace_back(x, y); 
 	return true;
 }
 
@@ -52,4 +54,19 @@ bool GomokuBoard::checkWin(int x, int y) const {
         if(Count >= 5) return true;
     }
     return false;
+}
+
+bool GomokuBoard::undoMove() {
+    if (m_moves.empty()) {
+        return false; // 没有可悔棋的步骤
+    }
+    
+    // 使用 C++11 兼容的方式代替结构化绑定
+    std::pair<int, int> lastMove = m_moves.back();
+    int x = lastMove.first;
+    int y = lastMove.second;
+    
+    m_board[x][y] = Empty; // 将最后一步设为空
+    m_moves.pop_back(); // 移除最后一步记录
+    return true;
 }

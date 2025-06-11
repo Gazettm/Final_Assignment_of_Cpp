@@ -24,12 +24,14 @@ public:
     void exitGame();
     void WriteRatingY();
     void WriteRatingN();
+	void undoLastMove();
 
 protected:
     void paintEvent(QPaintEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void leaveEvent(QEvent *event) override;
+	void keyPressEvent(QKeyEvent *event) override;
 
 private:
     GomokuBoard m_board;
@@ -38,7 +40,8 @@ private:
     AiPlayer m_aiplayer;
     Rating rating;
     QPoint m_hoverPos;
-    
+	bool isAIpending;
+	
     void drawBoard(QPainter &painter);
     void drawPieces(QPainter &painter);
     void drawHoverIndicator(QPainter &painter);

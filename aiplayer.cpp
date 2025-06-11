@@ -81,14 +81,14 @@ int AiPlayer::evaluatePosition(int x, int y, GomokuBoard::Piece aiPiece,GomokuBo
 			}
 		}
 
-		if (humanCount >= 4) score += 100000;
-		else if (humanCount == 3 && !humanBlocked) score += 10000;
-		else if (humanCount == 2 && !humanBlocked) score += 1000;
+		if (humanCount >= 4) score += 10000;
+		else if (humanCount == 3 && !humanBlocked) score += 1000;
+		else if (humanCount == 2 && !humanBlocked) score += 100;
 		
-		if(aiCount == 5) score += 999999;
-		else if (aiCount >= 4) score += 5000;
-		else if (aiCount == 3 && !aiBlocked) score += 5000;
-		else if (aiCount == 2 && !aiBlocked) score += 500;
+		if(aiCount == 5) score += 99999;
+		else if (aiCount >= 4) score += 500;
+		else if (aiCount == 3 && !aiBlocked) score += 500;
+		else if (aiCount == 2 && !aiBlocked) score += 50;
 	}
 	
 	int center = m_board.size() / 2;
