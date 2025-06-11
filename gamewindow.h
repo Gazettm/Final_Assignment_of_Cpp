@@ -40,7 +40,7 @@ private:
     AiPlayer m_aiplayer;
     Rating rating;
     QPoint m_hoverPos;
-	bool isAIpending;
+	bool isAIpending = false;
 	
     void drawBoard(QPainter &painter);
     void drawPieces(QPainter &painter);
