@@ -77,7 +77,6 @@ void GameWindow::mousePressEvent(QMouseEvent *event) {
     int gridSize = width() / (m_board.size() + 1);
     int margin = gridSize;
     
-
     int x = qRound(static_cast<float>(event->x() - margin) / gridSize);
     int y = qRound(static_cast<float>(event->y() - margin) / gridSize);
 
