@@ -2,23 +2,31 @@
 \contentsline {section}{\numberline {2}程序分析}{3}{section.2}%
 \contentsline {subsection}{\numberline {2.1}需求分析}{3}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}设计挑战}{3}{subsection.2.2}%
-\contentsline {section}{\numberline {3}程序设计}{3}{section.3}%
-\contentsline {subsection}{\numberline {3.1}系统架构}{3}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}核心类设计}{3}{subsection.3.2}%
+\contentsline {section}{\numberline {3}程序设计}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}系统架构}{4}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}逻辑结构图}{4}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}数据流图}{4}{subsubsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.2}核心类设计}{4}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}AI评估算法}{4}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}胜率统计算法}{4}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.4}胜率统计算法}{5}{subsection.3.4}%
 \contentsline {section}{\numberline {4}程序实现}{5}{section.4}%
 \contentsline {subsection}{\numberline {4.1}开发环境}{5}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}关键实现}{5}{subsection.4.2}%
-\contentsline {subsubsection}{\numberline {4.2.1}棋盘绘制}{5}{subsubsection.4.2.1}%
-\contentsline {subsubsection}{\numberline {4.2.2}棋盘底层逻辑}{5}{subsubsection.4.2.2}%
-\contentsline {subsubsection}{\numberline {4.2.3}AI决策流程}{7}{subsubsection.4.2.3}%
-\contentsline {subsubsection}{\numberline {4.2.4}胜率计算}{8}{subsubsection.4.2.4}%
-\contentsline {section}{\numberline {5}程序测试}{9}{section.5}%
-\contentsline {subsection}{\numberline {5.1}测试用例}{9}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}界面测试}{10}{subsection.5.2}%
-\contentsline {section}{\numberline {6}任务分工}{10}{section.6}%
-\contentsline {section}{\numberline {7}经验总结}{10}{section.7}%
-\contentsline {subsection}{\numberline {7.1}遇到的问题与解决}{10}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}改进方向}{10}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}总结体会}{10}{subsection.7.3}%
+\contentsline {subsection}{\numberline {4.2}使用头文件介绍}{5}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}关键实现}{6}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}棋盘绘制}{6}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.2}UI设计及键鼠交互}{6}{subsubsection.4.3.2}%
+\contentsline {paragraph}{•gamewindow类函数介绍}{12}{lstnumber.-3.295}%
+\contentsline {subsubsection}{\numberline {4.3.3}棋盘底层逻辑}{13}{subsubsection.4.3.3}%
+\contentsline {paragraph}{•gomokuboard类函数介绍}{14}{lstnumber.-5.56}%
+\contentsline {subsubsection}{\numberline {4.3.4}AI决策流程}{14}{subsubsection.4.3.4}%
+\contentsline {paragraph}{•aiplayer类函数介绍}{16}{lstnumber.-7.100}%
+\contentsline {subsubsection}{\numberline {4.3.5}胜率计算}{16}{subsubsection.4.3.5}%
+\contentsline {paragraph}{•rating类函数介绍}{18}{lstnumber.-9.45}%
+\contentsline {section}{\numberline {5}程序测试}{18}{section.5}%
+\contentsline {subsection}{\numberline {5.1}测试用例}{18}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}界面测试}{18}{subsection.5.2}%
+\contentsline {section}{\numberline {6}任务分工}{18}{section.6}%
+\contentsline {section}{\numberline {7}经验总结}{18}{section.7}%
+\contentsline {subsection}{\numberline {7.1}遇到的问题与解决}{18}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}改进方向}{20}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}总结体会}{20}{subsection.7.3}%
